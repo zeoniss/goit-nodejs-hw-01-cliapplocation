@@ -33,6 +33,10 @@ async function getContactById(contactId) {
   try {
     const getId = await fs.readFile(contactsPath, "utf-8");
     const searchId = JSON.parse(getId).find((item) => item.id == contactId);
+    //метод фильтр возвращает массив
+    //значений которые соответствуют критерию
+    //Возращаем один объект из массива,
+    // который соответствует переданному id.
     console.table(searchId);
   } catch (error) {
     console.log(error);
@@ -44,7 +48,7 @@ async function removeContact(contactId) {
   try {
     const removeById = await fs.readFile(contactsPath, "utf-8");
     const removeCont = JSON.parse(removeById).filter(
-      (item) => item.id !== contactId
+      (item) => item.id !== contactId //Возращяем объекты,которые не равны id.
     );
     console.table(removeCont);
   } catch (error) {
