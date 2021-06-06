@@ -13,7 +13,6 @@ async function listContacts() {
     console.log(error);
   }
 }
-module.exports = { listContacts };
 async function addContact(name, email, phone) {
   try {
     const file = await fs.readFile(contactsPath, "utf-8");
@@ -27,12 +26,13 @@ async function addContact(name, email, phone) {
     console.log(error);
   }
 }
-module.exports = { addContact };
+module.exports = {};
 
 async function getContactById(contactId) {
   try {
     const getId = await fs.readFile(contactsPath, "utf-8");
     const searchId = JSON.parse(getId).find((item) => item.id == contactId);
+
     //метод фильтр возвращает массив
     //значений которые соответствуют критерию
     //Возращаем один объект из массива,
@@ -56,4 +56,4 @@ async function removeContact(contactId) {
   }
 }
 
-module.exports = { removeContact };
+module.exports = { listContacts, removeContact, getContactById, addContact };
