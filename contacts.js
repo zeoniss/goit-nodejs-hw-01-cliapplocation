@@ -26,7 +26,6 @@ async function addContact(name, email, phone) {
     console.log(error);
   }
 }
-module.exports = {};
 
 async function getContactById(contactId) {
   try {
@@ -42,7 +41,6 @@ async function getContactById(contactId) {
     console.log(error);
   }
 }
-module.exports = { getContactById };
 
 async function removeContact(contactId) {
   try {
@@ -50,7 +48,10 @@ async function removeContact(contactId) {
     const removeCont = JSON.parse(removeById).filter(
       (item) => item.id !== contactId //Возращяем объекты,которые не равны id.
     );
+
     console.table(removeCont);
+    const newContacts = JSON.stringify(removeCont);
+    await fs.writeFile("./contacts1.json", newContacts, "utf-8");
   } catch (error) {
     console.log(error);
   }
