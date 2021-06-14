@@ -5,13 +5,16 @@ const v4 = require("uuid-v4");
 console.log(contactsPath);
 
 async function listContacts() {
-  try {
-    const listContact = await fs.readFile(contactsPath, "utf-8");
-    const result = JSON.parse(listContact);
-    console.table(result);
-  } catch (error) {
-    console.log(error);
-  }
+ const getContactById = async (contactId) => {
+   try {
+     const [contactById] = contacts.filter(
+       (contact) => contactId === contact.id
+     )
+     return contactById
+   } catch (error) {
+     console.error(error.message)
+   }
+ }
 }
 async function addContact(name, email, phone) {
   try {
